@@ -2,6 +2,17 @@
 
 ウィンドウ分割ショートカットアプリ。Rectangle/Magnet の代替。
 
+## インストール
+
+```bash
+git clone https://github.com/ka-1311/claude.git
+cd claude
+bash build.sh
+open "/Applications/KA Window.app"
+```
+
+初回起動後、**システム設定 > プライバシーとセキュリティ > アクセシビリティ** で許可してください。
+
 ## ショートカット
 
 | 操作 | ショートカット |
@@ -15,10 +26,3 @@
 | 最大化 | Cmd+Shift+Ctrl+Return |
 | 次のディスプレイ | Cmd+Shift+Ctrl+↓ |
 | 前のディスプレイ | Cmd+Shift+Ctrl+↑ |
-
-## 注意事項
-
-- JISキーボード環境
-- Xcodeはインストールされていない（`swift build`のみ使用）
-- リビルド時は `tccutil reset Accessibility com.ka.window` で権限リセット可能
-- Preferences UIからショートカットのカスタマイズ、ログイン時自動起動の設定が可能
