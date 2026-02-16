@@ -87,11 +87,11 @@ class ModifierKeyMonitor {
         }
 
         let bothCmdNow = leftCmdDown && rightCmdDown
-        let shift = flags.contains(.maskShift)
+        let control = flags.contains(.maskControl)
 
         // Detect the moment both Cmds become pressed (rising edge)
         if bothCmdNow && !bothCmdWasDown {
-            let requestedMode: PointerMode = shift ? .rectangle : .spotlight
+            let requestedMode: PointerMode = control ? .rectangle : .spotlight
 
             if activeMode == requestedMode {
                 // Same mode -> toggle off
