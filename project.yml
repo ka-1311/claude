@@ -1,0 +1,34 @@
+name: KAWindow
+options:
+  bundleIdPrefix: com.ka
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  KAWindow:
+    type: application
+    platform: macOS
+    sources:
+      - KAWindow
+    info:
+      path: KAWindow/Info.plist
+    entitlements:
+      path: KAWindow/KAWindow.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ka.window
+        INFOPLIST_FILE: KAWindow/Info.plist
+        CODE_SIGN_ENTITLEMENTS: KAWindow/KAWindow.entitlements
+        GENERATE_INFOPLIST_FILE: NO
+        LD_RUNPATH_SEARCH_PATHS:
+          - "@executable_path/../Frameworks"
