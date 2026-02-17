@@ -76,15 +76,37 @@ class AccessibilityElement {
     func setFrame(_ rect: CGRect) {
         // Step 1: Pre-resize
         self.size = rect.size
-        // Small delay to let the window manager process
-        usleep(50000) // 50ms
+        waitForSize(rect.size)
 
         // Step 2: Move
         self.position = rect.origin
-        usleep(50000) // 50ms
+        waitForPosition(rect.origin)
 
         // Step 3: Final resize
         self.size = rect.size
+        waitForSize(rect.size)
+    }
+
+    private func waitForSize(_ expected: CGSize, timeout: UInt32 = 200_000, interval: UInt32 = 10_000) {
+        var elapsed: UInt32 = 0
+        while elapsed < timeout {
+            if let current = self.size,
+               abs(current.width - expected.width) < 2,
+               abs(current.height - expected.height) < 2 { return }
+            usleep(interval)
+            elapsed += interval
+        }
+    }
+
+    private func waitForPosition(_ expected: CGPoint, timeout: UInt32 = 200_000, interval: UInt32 = 10_000) {
+        var elapsed: UInt32 = 0
+        while elapsed < timeout {
+            if let current = self.position,
+               abs(current.x - expected.x) < 2,
+               abs(current.y - expected.y) < 2 { return }
+            usleep(interval)
+            elapsed += interval
+        }
     }
 
     /// Check if the window is resizable
